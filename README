@@ -1,0 +1,49 @@
+To execute this program, it is necessary to have a Hadoop cluster working.
+
+Setting up the Hadoop Cluster for testing on a sinlge machine:
+
+Download hadoop 1.21 from:
+
+http://hadoop.apache.org/releases.html
+
+Install a Java 6:
+
+$ sudo apt-get install oracle-java6-installer
+
+Inside the hadoop home directory, update a configuration file in  conf/ :
+
+$ vim conf/hadoop-env.sh 
+
+export JAVA_HOME=/usr/lib/jvm/java-6-oracle/ 
+export HADOOP_HOME=/home/renata/hadoop-1.2.1 
+export HADOOP_VERSION=1.2.1 
+
+Create an input directory, to place your input file: 
+
+$ mkdir input 
+
+Put some content in:
+
+$ cp conf/*.xml input 
+
+To test if your hadoop is working properly:
+
+$ bin/hadoop jar hadoop-examples*.jar grep input output 'dfs[a-z.]+' 
+
+Don't forget to remove the output file after running a Job. Hadoop doesn't do this for you.
+
+$ rm -rf output 
+ 
+Now, to test the Genetic jar file:
+
+$ export HADOOP_HOME=/home/renata/hadoop-1.2.1 
+$ export HADOOP_VERSION=1.2.1 
+
+To compile the code run :
+
+$ javac -classpath ${HADOOP_HOME}/hadoop-core*.jar -d genetic_classes Genetic.java 
+
+And create the jar:
+
+$ jar -cvf genetic.jar -C genetic_classes/ .
+
