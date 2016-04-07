@@ -1,3 +1,5 @@
+Genetic Algorithm to run on Hadoop. I used as example the optimization Knapsack Problem.
+
 To execute this program, it is necessary to have a Hadoop cluster working.
 
 Setting up the Hadoop Cluster for testing on a sinlge machine:
@@ -47,3 +49,6 @@ And create the jar:
 
 $ jar -cvf genetic.jar -C genetic_classes/ .
 
+Now, to run the code (once you put the input data on "input/" directory):
+
+$ bin/hadoop jar genetic.jar org.myorg.Genetic input output 
